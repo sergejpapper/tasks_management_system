@@ -1,10 +1,8 @@
 @extends('auth.layouts')
 
 @section('content')
-
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
@@ -21,8 +19,7 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-end text-start">Email
-                                Address</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end text-start">Email</label>
                             <div class="col-md-6">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                                        name="email" value="{{ old('email') }}">
@@ -53,11 +50,9 @@
                         <div class="mb-3 row">
                             <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Register">
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

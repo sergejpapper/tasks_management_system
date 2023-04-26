@@ -85,8 +85,7 @@ class LoginRegisterController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('tasks')
-                ->withSuccess('You have successfully logged in');
+            return redirect()->route('tasks');
         }
 
         return back()->withErrors([
@@ -103,7 +102,7 @@ class LoginRegisterController extends Controller
     public function tasks(): Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
     {
         if (Auth::check()) {
-            return view('auth.tasks');
+            return view('tasks');
         } else {
             return redirect()->route('login')
                 ->withErrors([
