@@ -17,7 +17,7 @@ class LoginRegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'tasks'
+            'logout'
         ]);
     }
 
@@ -55,8 +55,7 @@ class LoginRegisterController extends Controller
         Auth::attempt($credentials);
         $request->session()->regenerate();
 
-        return redirect()->route('tasks')
-            ->withSuccess('You have successfully registered & logged in');
+        return redirect()->route('tasks');
     }
 
     /**
@@ -95,23 +94,6 @@ class LoginRegisterController extends Controller
     }
 
     /**
-     * Display a tasks list to authenticated users.
-     *
-     * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
-     */
-    public function tasks(): Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
-    {
-        if (Auth::check()) {
-            return view('tasks');
-        } else {
-            return redirect()->route('login')
-                ->withErrors([
-                    'email' => 'Please login to access the tasks list',
-                ])->onlyInput('email');
-        }
-    }
-
-    /**
      * Log out the user from application.
      *
      * @param Request $request
@@ -123,7 +105,6 @@ class LoginRegisterController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')
-            ->withSuccess('You have logged out successfully');
+        return redirect()->route('login');
     }
 }
